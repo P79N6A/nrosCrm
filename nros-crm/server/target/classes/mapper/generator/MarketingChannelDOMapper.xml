@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator.MarketingChannelDOMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingChannelDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="node_id" jdbcType="INTEGER" property="nodeId" />
+    <result column="channel_type" jdbcType="CHAR" property="channelType" />
+    <result column="fail_code" jdbcType="VARCHAR" property="failCode" />
+    <result column="fail_counter" jdbcType="INTEGER" property="failCounter" />
+    <result column="fail_msg" jdbcType="VARCHAR" property="failMsg" />
+    <result column="msg_content" jdbcType="VARCHAR" property="msgContent" />
+    <result column="msg_status" jdbcType="CHAR" property="msgStatus" />
+    <result column="release_time" jdbcType="TIMESTAMP" property="releaseTime" />
+    <result column="sendnow" jdbcType="CHAR" property="sendnow" />
+    <result column="sent_counter" jdbcType="INTEGER" property="sentCounter" />
+    <result column="success_counter" jdbcType="INTEGER" property="successCounter" />
+    <result column="target_group" jdbcType="BIGINT" property="targetGroup" />
+    <result column="target_phone_list" jdbcType="VARCHAR" property="targetPhoneList" />
+    <result column="filter_condition" jdbcType="VARCHAR" property="filterCondition" />
+    <result column="cc_phone_list" jdbcType="VARCHAR" property="ccPhoneList" />
+    <result column="is_repeat" jdbcType="CHAR" property="isRepeat" />
+    <result column="repeat_type" jdbcType="CHAR" property="repeatType" />
+    <result column="wx_msg_id" jdbcType="VARCHAR" property="wxMsgId" />
+    <result column="filter_condition_json" jdbcType="VARCHAR" property="filterConditionJson" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="is_all_wxfans" jdbcType="CHAR" property="isAllWxfans" />
+    <result column="origin_group" jdbcType="BIGINT" property="originGroup" />
+    <result column="sms_template_id" jdbcType="BIGINT" property="smsTemplateId" />
+    <result column="active_call_type_id" jdbcType="INTEGER" property="activeCallTypeId" />
+    <result column="due_date" jdbcType="TIMESTAMP" property="dueDate" />
+    <result column="survey_id" jdbcType="BIGINT" property="surveyId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="h5_channel_url" jdbcType="VARCHAR" property="h5ChannelUrl" />
+    <result column="wx_media_id" jdbcType="VARCHAR" property="wxMediaId" />
+    <result column="coupon_code" jdbcType="VARCHAR" property="couponCode" />
+    <result column="campaign_h5_id" jdbcType="BIGINT" property="campaignH5Id" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, node_id, channel_type, fail_code, fail_counter, fail_msg, msg_content, msg_status, 
+    release_time, sendnow, sent_counter, success_counter, target_group, target_phone_list, 
+    filter_condition, cc_phone_list, is_repeat, repeat_type, wx_msg_id, filter_condition_json, 
+    title, is_all_wxfans, origin_group, sms_template_id, active_call_type_id, due_date, 
+    survey_id, description, h5_channel_url, wx_media_id, coupon_code, campaign_h5_id, 
+    ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator, modifier, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_marketing_channel
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_marketing_channel
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingChannelDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_marketing_channel_id_seq')
+    </selectKey>
+    insert into crm_marketing_channel (id, node_id, channel_type, 
+      fail_code, fail_counter, fail_msg, 
+      msg_content, msg_status, release_time, 
+      sendnow, sent_counter, success_counter, 
+      target_group, target_phone_list, filter_condition, 
+      cc_phone_list, is_repeat, repeat_type, 
+      wx_msg_id, filter_condition_json, title, 
+      is_all_wxfans, origin_group, sms_template_id, 
+      active_call_type_id, due_date, survey_id, 
+      description, h5_channel_url, wx_media_id, 
+      coupon_code, campaign_h5_id, ext_info, 
+      merchant_code, app_id, gmt_create, 
+      gmt_modified, creator, 
+      modifier, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{nodeId,jdbcType=INTEGER}, #{channelType,jdbcType=CHAR}, 
+      #{failCode,jdbcType=VARCHAR}, #{failCounter,jdbcType=INTEGER}, #{failMsg,jdbcType=VARCHAR}, 
+      #{msgContent,jdbcType=VARCHAR}, #{msgStatus,jdbcType=CHAR}, #{releaseTime,jdbcType=TIMESTAMP}, 
+      #{sendnow,jdbcType=CHAR}, #{sentCounter,jdbcType=INTEGER}, #{successCounter,jdbcType=INTEGER}, 
+      #{targetGroup,jdbcType=BIGINT}, #{targetPhoneList,jdbcType=VARCHAR}, #{filterCondition,jdbcType=VARCHAR}, 
+      #{ccPhoneList,jdbcType=VARCHAR}, #{isRepeat,jdbcType=CHAR}, #{repeatType,jdbcType=CHAR}, 
+      #{wxMsgId,jdbcType=VARCHAR}, #{filterConditionJson,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{isAllWxfans,jdbcType=CHAR}, #{originGroup,jdbcType=BIGINT}, #{smsTemplateId,jdbcType=BIGINT}, 
+      #{activeCallTypeId,jdbcType=INTEGER}, #{dueDate,jdbcType=TIMESTAMP}, #{surveyId,jdbcType=BIGINT}, 
+      #{description,jdbcType=VARCHAR}, #{h5ChannelUrl,jdbcType=VARCHAR}, #{wxMediaId,jdbcType=VARCHAR}, 
+      #{couponCode,jdbcType=VARCHAR}, #{campaignH5Id,jdbcType=BIGINT}, #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingChannelDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_marketing_channel_id_seq')
+    </selectKey>
+    insert into crm_marketing_channel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="nodeId != null">
+        node_id,
+      </if>
+      <if test="channelType != null">
+        channel_type,
+      </if>
+      <if test="failCode != null">
+        fail_code,
+      </if>
+      <if test="failCounter != null">
+        fail_counter,
+      </if>
+      <if test="failMsg != null">
+        fail_msg,
+      </if>
+      <if test="msgContent != null">
+        msg_content,
+      </if>
+      <if test="msgStatus != null">
+        msg_status,
+      </if>
+      <if test="releaseTime != null">
+        release_time,
+      </if>
+      <if test="sendnow != null">
+        sendnow,
+      </if>
+      <if test="sentCounter != null">
+        sent_counter,
+      </if>
+      <if test="successCounter != null">
+        success_counter,
+      </if>
+      <if test="targetGroup != null">
+        target_group,
+      </if>
+      <if test="targetPhoneList != null">
+        target_phone_list,
+      </if>
+      <if test="filterCondition != null">
+        filter_condition,
+      </if>
+      <if test="ccPhoneList != null">
+        cc_phone_list,
+      </if>
+      <if test="isRepeat != null">
+        is_repeat,
+      </if>
+      <if test="repeatType != null">
+        repeat_type,
+      </if>
+      <if test="wxMsgId != null">
+        wx_msg_id,
+      </if>
+      <if test="filterConditionJson != null">
+        filter_condition_json,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="isAllWxfans != null">
+        is_all_wxfans,
+      </if>
+      <if test="originGroup != null">
+        origin_group,
+      </if>
+      <if test="smsTemplateId != null">
+        sms_template_id,
+      </if>
+      <if test="activeCallTypeId != null">
+        active_call_type_id,
+      </if>
+      <if test="dueDate != null">
+        due_date,
+      </if>
+      <if test="surveyId != null">
+        survey_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="h5ChannelUrl != null">
+        h5_channel_url,
+      </if>
+      <if test="wxMediaId != null">
+        wx_media_id,
+      </if>
+      <if test="couponCode != null">
+        coupon_code,
+      </if>
+      <if test="campaignH5Id != null">
+        campaign_h5_id,
+      </if>
+      <if test="extInfo != null">
+        ext_info,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="nodeId != null">
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="channelType != null">
+        #{channelType,jdbcType=CHAR},
+      </if>
+      <if test="failCode != null">
+        #{failCode,jdbcType=VARCHAR},
+      </if>
+      <if test="failCounter != null">
+        #{failCounter,jdbcType=INTEGER},
+      </if>
+      <if test="failMsg != null">
+        #{failMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="msgStatus != null">
+        #{msgStatus,jdbcType=CHAR},
+      </if>
+      <if test="releaseTime != null">
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendnow != null">
+        #{sendnow,jdbcType=CHAR},
+      </if>
+      <if test="sentCounter != null">
+        #{sentCounter,jdbcType=INTEGER},
+      </if>
+      <if test="successCounter != null">
+        #{successCounter,jdbcType=INTEGER},
+      </if>
+      <if test="targetGroup != null">
+        #{targetGroup,jdbcType=BIGINT},
+      </if>
+      <if test="targetPhoneList != null">
+        #{targetPhoneList,jdbcType=VARCHAR},
+      </if>
+      <if test="filterCondition != null">
+        #{filterCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="ccPhoneList != null">
+        #{ccPhoneList,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepeat != null">
+        #{isRepeat,jdbcType=CHAR},
+      </if>
+      <if test="repeatType != null">
+        #{repeatType,jdbcType=CHAR},
+      </if>
+      <if test="wxMsgId != null">
+        #{wxMsgId,jdbcType=VARCHAR},
+      </if>
+      <if test="filterConditionJson != null">
+        #{filterConditionJson,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllWxfans != null">
+        #{isAllWxfans,jdbcType=CHAR},
+      </if>
+      <if test="originGroup != null">
+        #{originGroup,jdbcType=BIGINT},
+      </if>
+      <if test="smsTemplateId != null">
+        #{smsTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="activeCallTypeId != null">
+        #{activeCallTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="dueDate != null">
+        #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyId != null">
+        #{surveyId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="h5ChannelUrl != null">
+        #{h5ChannelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxMediaId != null">
+        #{wxMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponCode != null">
+        #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignH5Id != null">
+        #{campaignH5Id,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingChannelDO">
+    update crm_marketing_channel
+    <set>
+      <if test="nodeId != null">
+        node_id = #{nodeId,jdbcType=INTEGER},
+      </if>
+      <if test="channelType != null">
+        channel_type = #{channelType,jdbcType=CHAR},
+      </if>
+      <if test="failCode != null">
+        fail_code = #{failCode,jdbcType=VARCHAR},
+      </if>
+      <if test="failCounter != null">
+        fail_counter = #{failCounter,jdbcType=INTEGER},
+      </if>
+      <if test="failMsg != null">
+        fail_msg = #{failMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContent != null">
+        msg_content = #{msgContent,jdbcType=VARCHAR},
+      </if>
+      <if test="msgStatus != null">
+        msg_status = #{msgStatus,jdbcType=CHAR},
+      </if>
+      <if test="releaseTime != null">
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendnow != null">
+        sendnow = #{sendnow,jdbcType=CHAR},
+      </if>
+      <if test="sentCounter != null">
+        sent_counter = #{sentCounter,jdbcType=INTEGER},
+      </if>
+      <if test="successCounter != null">
+        success_counter = #{successCounter,jdbcType=INTEGER},
+      </if>
+      <if test="targetGroup != null">
+        target_group = #{targetGroup,jdbcType=BIGINT},
+      </if>
+      <if test="targetPhoneList != null">
+        target_phone_list = #{targetPhoneList,jdbcType=VARCHAR},
+      </if>
+      <if test="filterCondition != null">
+        filter_condition = #{filterCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="ccPhoneList != null">
+        cc_phone_list = #{ccPhoneList,jdbcType=VARCHAR},
+      </if>
+      <if test="isRepeat != null">
+        is_repeat = #{isRepeat,jdbcType=CHAR},
+      </if>
+      <if test="repeatType != null">
+        repeat_type = #{repeatType,jdbcType=CHAR},
+      </if>
+      <if test="wxMsgId != null">
+        wx_msg_id = #{wxMsgId,jdbcType=VARCHAR},
+      </if>
+      <if test="filterConditionJson != null">
+        filter_condition_json = #{filterConditionJson,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllWxfans != null">
+        is_all_wxfans = #{isAllWxfans,jdbcType=CHAR},
+      </if>
+      <if test="originGroup != null">
+        origin_group = #{originGroup,jdbcType=BIGINT},
+      </if>
+      <if test="smsTemplateId != null">
+        sms_template_id = #{smsTemplateId,jdbcType=BIGINT},
+      </if>
+      <if test="activeCallTypeId != null">
+        active_call_type_id = #{activeCallTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="dueDate != null">
+        due_date = #{dueDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="surveyId != null">
+        survey_id = #{surveyId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="h5ChannelUrl != null">
+        h5_channel_url = #{h5ChannelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxMediaId != null">
+        wx_media_id = #{wxMediaId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponCode != null">
+        coupon_code = #{couponCode,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignH5Id != null">
+        campaign_h5_id = #{campaignH5Id,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingChannelDO">
+    update crm_marketing_channel
+    set node_id = #{nodeId,jdbcType=INTEGER},
+      channel_type = #{channelType,jdbcType=CHAR},
+      fail_code = #{failCode,jdbcType=VARCHAR},
+      fail_counter = #{failCounter,jdbcType=INTEGER},
+      fail_msg = #{failMsg,jdbcType=VARCHAR},
+      msg_content = #{msgContent,jdbcType=VARCHAR},
+      msg_status = #{msgStatus,jdbcType=CHAR},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      sendnow = #{sendnow,jdbcType=CHAR},
+      sent_counter = #{sentCounter,jdbcType=INTEGER},
+      success_counter = #{successCounter,jdbcType=INTEGER},
+      target_group = #{targetGroup,jdbcType=BIGINT},
+      target_phone_list = #{targetPhoneList,jdbcType=VARCHAR},
+      filter_condition = #{filterCondition,jdbcType=VARCHAR},
+      cc_phone_list = #{ccPhoneList,jdbcType=VARCHAR},
+      is_repeat = #{isRepeat,jdbcType=CHAR},
+      repeat_type = #{repeatType,jdbcType=CHAR},
+      wx_msg_id = #{wxMsgId,jdbcType=VARCHAR},
+      filter_condition_json = #{filterConditionJson,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      is_all_wxfans = #{isAllWxfans,jdbcType=CHAR},
+      origin_group = #{originGroup,jdbcType=BIGINT},
+      sms_template_id = #{smsTemplateId,jdbcType=BIGINT},
+      active_call_type_id = #{activeCallTypeId,jdbcType=INTEGER},
+      due_date = #{dueDate,jdbcType=TIMESTAMP},
+      survey_id = #{surveyId,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      h5_channel_url = #{h5ChannelUrl,jdbcType=VARCHAR},
+      wx_media_id = #{wxMediaId,jdbcType=VARCHAR},
+      coupon_code = #{couponCode,jdbcType=VARCHAR},
+      campaign_h5_id = #{campaignH5Id,jdbcType=BIGINT},
+      ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

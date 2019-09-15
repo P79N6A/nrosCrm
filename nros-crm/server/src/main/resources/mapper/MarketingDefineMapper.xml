@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.MarketingDefineMapper">
+    <resultMap id="BaseResultMap"
+               type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingDefineDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="template_id" jdbcType="BIGINT" property="templateId"/>
+        <result column="marketing_name" jdbcType="VARCHAR" property="marketingName"/>
+        <result column="marketing_remark" jdbcType="VARCHAR" property="marketingRemark"/>
+        <result column="analysis_start" jdbcType="TIMESTAMP" property="analysisStart"/>
+        <result column="analysis_end" jdbcType="TIMESTAMP" property="analysisEnd"/>
+        <result column="is_relative" jdbcType="CHAR" property="isRelative"/>
+        <result column="before_count" jdbcType="INTEGER" property="beforeCount"/>
+        <result column="after_count" jdbcType="INTEGER" property="afterCount"/>
+        <result column="marketing_type" jdbcType="CHAR" property="marketingType"/>
+        <result column="marketing_config_json" jdbcType="VARCHAR" property="marketingConfigJson"/>
+        <result column="excute_config_json" jdbcType="VARCHAR" property="excuteConfigJson"/>
+        <result column="is_always_valid" jdbcType="CHAR" property="isAlwaysValid"/>
+        <result column="starttime" jdbcType="DATE" property="starttime"/>
+        <result column="finishtime" jdbcType="DATE" property="finishtime"/>
+        <result column="frequence_type" jdbcType="CHAR" property="frequenceType"/>
+        <result column="frequence_count" jdbcType="INTEGER" property="frequenceCount"/>
+        <result column="frequence_unit" jdbcType="CHAR" property="frequenceUnit"/>
+        <result column="marketing_status" jdbcType="CHAR" property="marketingStatus"/>
+        <result column="ext_info" jdbcType="OTHER" property="extInfo"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode"/>
+        <result column="app_id" jdbcType="VARCHAR" property="appId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="creator" jdbcType="OTHER" property="creator"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="modifier" jdbcType="OTHER" property="modifier"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, template_id, marketing_name, marketing_remark, analysis_start, analysis_end,
+    is_relative, before_count, after_count, marketing_type, marketing_config_json, excute_config_json,
+    is_always_valid, starttime, finishtime, frequence_type, frequence_count, frequence_unit,
+    marketing_status, ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator,
+    modifier, status
+  </sql>
+
+    <select id="queryList"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingDefineDO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_marketing_define
+        where status ='A'
+        <if test="marketingName != null and marketingName != ''">
+            AND marketing_name like CONCAT('%',#{marketingName,jdbcType=VARCHAR},'%')
+        </if>
+
+        <if test="marketingStatus != null and marketingStatus != ''">
+            AND marketing_status = #{marketingStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="marketingType != null and marketingType != ''">
+            AND marketing_type = #{marketingType,jdbcType=VARCHAR}
+        </if>
+        ORDER BY gmt_modified desc,gmt_create desc
+    </select>
+
+    <select id="selectActiveCampaignDefines" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_marketing_define define
+        where status ='A' and define.marketing_status='1'
+        AND define.marketing_type=#{marketingType}
+        <if test="merchantCode != null and merchantCode != ''">
+            AND define.merchant_code = #{merchantCode}
+        </if>
+    </select>
+
+    <update id="setAnalysis"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingDefineDO">
+        update crm_marketing_define
+        <set>
+            <if test='isRelative != null '>
+                is_relative = #{isRelative,jdbcType=CHAR},
+                <if test='isRelative == ""'>
+                    analysis_start = null,
+                    analysis_end = null,
+                    before_count = null,
+                    after_count = null,
+                </if>
+                <if test='isRelative == "1"'>
+                    analysis_start = null,
+                    analysis_end = null,
+                    <if test="beforeCount != null">
+                        before_count = #{beforeCount,jdbcType=INTEGER},
+                    </if>
+                    <if test="afterCount != null">
+                        after_count = #{afterCount,jdbcType=INTEGER},
+                    </if>
+                </if>
+                <if test='isRelative == "0"'>
+                    before_count = null,
+                    after_count = null,
+                    <if test="analysisStart != null">
+                        analysis_start = #{analysisStart,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="analysisEnd != null">
+                        analysis_end = #{analysisEnd,jdbcType=TIMESTAMP},
+                    </if>
+                </if>
+            </if>
+            <if test='isAlwaysValid != null and isAlwaysValid != "" '>
+                is_always_valid = #{isAlwaysValid,jdbcType=CHAR},
+                <if test='isAlwaysValid == "1"'>
+                    starttime = null,
+                    finishtime = null,
+                </if>
+                <if test='isAlwaysValid == "0"'>
+                    <if test="starttime != null">
+                        starttime = #{starttime,jdbcType=DATE},
+                    </if>
+                    <if test="finishtime != null">
+                        finishtime = #{finishtime,jdbcType=DATE},
+                    </if>
+                </if>
+            </if>
+            <if test="frequenceType != null">
+                frequence_type = #{frequenceType,jdbcType=CHAR},
+            </if>
+            <if test="frequenceCount != null">
+                frequence_count = #{frequenceCount,jdbcType=INTEGER},
+            </if>
+            <if test="frequenceUnit != null">
+                frequence_unit = #{frequenceUnit,jdbcType=CHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+            </if>
+            <if test="modifier != null">
+                modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

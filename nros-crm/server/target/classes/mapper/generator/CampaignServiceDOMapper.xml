@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator.CampaignServiceDOMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="invitor_phone" jdbcType="VARCHAR" property="invitorPhone" />
+    <result column="register_phone" jdbcType="VARCHAR" property="registerPhone" />
+    <result column="sign_phone" jdbcType="VARCHAR" property="signPhone" />
+    <result column="reservation_store_id" jdbcType="BIGINT" property="reservationStoreId" />
+    <result column="is_new" jdbcType="CHAR" property="isNew" />
+    <result column="audit_status" jdbcType="CHAR" property="auditStatus" />
+    <result column="is_sign_in" jdbcType="CHAR" property="isSignIn" />
+    <result column="sign_in_code" jdbcType="VARCHAR" property="signInCode" />
+    <result column="sign_in_time" jdbcType="VARCHAR" property="signInTime" />
+    <result column="sign_time" jdbcType="VARCHAR" property="signTime" />
+    <result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="is_reward" jdbcType="CHAR" property="isReward" />
+    <result column="reserve_time_id" jdbcType="BIGINT" property="reserveTimeId" />
+    <result column="campaign_id" jdbcType="BIGINT" property="campaignId" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="sign_name" jdbcType="VARCHAR" property="signName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, invitor_phone, register_phone, sign_phone, reservation_store_id, is_new, audit_status, 
+    is_sign_in, sign_in_code, sign_in_time, sign_time, register_time, is_reward, reserve_time_id, 
+    campaign_id, ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator, 
+    modifier, status, sign_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_campaign_service
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_campaign_service
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_service_id_seq')
+    </selectKey>
+    insert into crm_campaign_service (id, invitor_phone, register_phone, 
+      sign_phone, reservation_store_id, is_new, 
+      audit_status, is_sign_in, sign_in_code, 
+      sign_in_time, sign_time, register_time, 
+      is_reward, reserve_time_id, campaign_id, 
+      ext_info, 
+      merchant_code, app_id, gmt_create, 
+      gmt_modified, creator, 
+      modifier, 
+      status, sign_name)
+    values (#{id,jdbcType=BIGINT}, #{invitorPhone,jdbcType=VARCHAR}, #{registerPhone,jdbcType=VARCHAR}, 
+      #{signPhone,jdbcType=VARCHAR}, #{reservationStoreId,jdbcType=BIGINT}, #{isNew,jdbcType=CHAR}, 
+      #{auditStatus,jdbcType=CHAR}, #{isSignIn,jdbcType=CHAR}, #{signInCode,jdbcType=VARCHAR}, 
+      #{signInTime,jdbcType=VARCHAR}, #{signTime,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}, 
+      #{isReward,jdbcType=CHAR}, #{reserveTimeId,jdbcType=BIGINT}, #{campaignId,jdbcType=BIGINT}, 
+      #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{status,jdbcType=CHAR}, #{signName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_service_id_seq')
+    </selectKey>
+    insert into crm_campaign_service
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="invitorPhone != null">
+        invitor_phone,
+      </if>
+      <if test="registerPhone != null">
+        register_phone,
+      </if>
+      <if test="signPhone != null">
+        sign_phone,
+      </if>
+      <if test="reservationStoreId != null">
+        reservation_store_id,
+      </if>
+      <if test="isNew != null">
+        is_new,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="isSignIn != null">
+        is_sign_in,
+      </if>
+      <if test="signInCode != null">
+        sign_in_code,
+      </if>
+      <if test="signInTime != null">
+        sign_in_time,
+      </if>
+      <if test="signTime != null">
+        sign_time,
+      </if>
+      <if test="registerTime != null">
+        register_time,
+      </if>
+      <if test="isReward != null">
+        is_reward,
+      </if>
+      <if test="reserveTimeId != null">
+        reserve_time_id,
+      </if>
+      <if test="campaignId != null">
+        campaign_id,
+      </if>
+      <if test="extInfo != null">
+        ext_info,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="signName != null">
+        sign_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="invitorPhone != null">
+        #{invitorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="registerPhone != null">
+        #{registerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="signPhone != null">
+        #{signPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationStoreId != null">
+        #{reservationStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="isNew != null">
+        #{isNew,jdbcType=CHAR},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=CHAR},
+      </if>
+      <if test="isSignIn != null">
+        #{isSignIn,jdbcType=CHAR},
+      </if>
+      <if test="signInCode != null">
+        #{signInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        #{signInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null">
+        #{signTime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isReward != null">
+        #{isReward,jdbcType=CHAR},
+      </if>
+      <if test="reserveTimeId != null">
+        #{reserveTimeId,jdbcType=BIGINT},
+      </if>
+      <if test="campaignId != null">
+        #{campaignId,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="signName != null">
+        #{signName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO">
+    update crm_campaign_service
+    <set>
+      <if test="invitorPhone != null">
+        invitor_phone = #{invitorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="registerPhone != null">
+        register_phone = #{registerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="signPhone != null">
+        sign_phone = #{signPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationStoreId != null">
+        reservation_store_id = #{reservationStoreId,jdbcType=BIGINT},
+      </if>
+      <if test="isNew != null">
+        is_new = #{isNew,jdbcType=CHAR},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=CHAR},
+      </if>
+      <if test="isSignIn != null">
+        is_sign_in = #{isSignIn,jdbcType=CHAR},
+      </if>
+      <if test="signInCode != null">
+        sign_in_code = #{signInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="signInTime != null">
+        sign_in_time = #{signInTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null">
+        sign_time = #{signTime,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isReward != null">
+        is_reward = #{isReward,jdbcType=CHAR},
+      </if>
+      <if test="reserveTimeId != null">
+        reserve_time_id = #{reserveTimeId,jdbcType=BIGINT},
+      </if>
+      <if test="campaignId != null">
+        campaign_id = #{campaignId,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="signName != null">
+        sign_name = #{signName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO">
+    update crm_campaign_service
+    set invitor_phone = #{invitorPhone,jdbcType=VARCHAR},
+      register_phone = #{registerPhone,jdbcType=VARCHAR},
+      sign_phone = #{signPhone,jdbcType=VARCHAR},
+      reservation_store_id = #{reservationStoreId,jdbcType=BIGINT},
+      is_new = #{isNew,jdbcType=CHAR},
+      audit_status = #{auditStatus,jdbcType=CHAR},
+      is_sign_in = #{isSignIn,jdbcType=CHAR},
+      sign_in_code = #{signInCode,jdbcType=VARCHAR},
+      sign_in_time = #{signInTime,jdbcType=VARCHAR},
+      sign_time = #{signTime,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
+      is_reward = #{isReward,jdbcType=CHAR},
+      reserve_time_id = #{reserveTimeId,jdbcType=BIGINT},
+      campaign_id = #{campaignId,jdbcType=BIGINT},
+      ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      status = #{status,jdbcType=CHAR},
+      sign_name = #{signName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

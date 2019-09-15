@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="mysql" defaultModelType="flat" targetRuntime="MyBatis3">
+        <!--beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!--自动实现Serializable接口-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <!--去除生成的注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+
+        <!--数据库基本信息-->
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://pgm-2zef0xm7ty4h57wlio.pg.rds.aliyuncs.com:3433/crm?currentSchema=crm" userId="trtjk" password="Trtjk1669"/>
+
+        <!--指定生成的类型为java类型，避免数据库中number等类型字段 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--自动生成的实体的存放包路径 -->
+        <javaModelGenerator
+                targetPackage="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator"
+                targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="true"/>
+            <property name="rootClass" value="com.ztesoft.zsmart.nros.common.model.BaseModel"/>
+        </javaModelGenerator>
+
+        <!--自动生成的*Mapper.xml文件存放路径 -->
+        <sqlMapGenerator targetPackage="mapper.generator"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--自动生成的*Mapper.java存放路径 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="crm_action_relation" domainObjectName="ActionnRelationDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_action_relation_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_campaign" domainObjectName="CampaignDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_campaign_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="reservation_selectable_stores" javaType="com.alibaba.fastjson.JSONArray"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_campaign_feedback" domainObjectName="CampaignFeedbackDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_campaign_feedback_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_campaign_reserve_time" domainObjectName="CampaignReserveTimeDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_campaign_reserve_time_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_campaign_reward" domainObjectName="CampaignRewardDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_campaign_reward_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_campaign_service" domainObjectName="CampaignServiceDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_campaign_service_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_campaign_statistic" domainObjectName="CampaignStatisticDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_campaign_statistic_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_event" domainObjectName="EventDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_event_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_event_trace" domainObjectName="EventTraceDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_event_trace_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_event_trace_template" domainObjectName="EventTraceTemplateDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_event_trace_template_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_event_trigger_history" domainObjectName="EventTriggerHistoryDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_event_trigger_history_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_action_preset" domainObjectName="MarketingActionPresetDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_action_preset_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_channel" domainObjectName="MarketingChannelDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_channel_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_define" domainObjectName="MarketingDefineDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_define_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_event_preset" domainObjectName="MarketingEventPresetDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_event_preset_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_instance" domainObjectName="MarketingInstanceDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_instance_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_instance_history" domainObjectName="MarketingInstanceHistoryDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_instance_history_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_marketing_template" domainObjectName="MarketingTemplateDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_marketing_template_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_node_execute_record" domainObjectName="NodeExecuteRecordDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_node_execute_record_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_node_filter_user" domainObjectName="NodeFilterUserDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_node_filter_user_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+        <table tableName="crm_sms_template" domainObjectName="SmsTemplateDO"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <generatedKey type="pre" column="id" sqlStatement="select nextval('crm_sms_template_id_seq')"/>
+            <columnOverride column="ext_info" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="creator" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+            <columnOverride column="modifier" javaType="com.alibaba.fastjson.JSONObject"
+                            typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

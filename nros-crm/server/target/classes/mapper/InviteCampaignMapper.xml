@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.InviteCampaignMapper">
+    <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="campaign_type" jdbcType="CHAR" property="campaignType" />
+        <result column="sign_start_time" jdbcType="TIMESTAMP" property="signStartTime" />
+        <result column="sign_end_time" jdbcType="TIMESTAMP" property="signEndTime" />
+        <result column="back_img" jdbcType="VARCHAR" property="backImg" />
+        <result column="button_color" jdbcType="VARCHAR" property="buttonColor" />
+        <result column="button_text" jdbcType="VARCHAR" property="buttonText" />
+        <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+        <result column="location" jdbcType="VARCHAR" property="location" />
+        <result column="link_address" jdbcType="VARCHAR" property="linkAddress" />
+        <result column="rich_pic" jdbcType="VARCHAR" property="richPic" />
+        <result column="necessory_info" jdbcType="VARCHAR" property="necessoryInfo" />
+        <result column="rich_digest" jdbcType="VARCHAR" property="richDigest" />
+        <result column="rich_detail" jdbcType="VARCHAR" property="richDetail" />
+        <result column="view_address" jdbcType="VARCHAR" property="viewAddress" />
+        <result column="wx_description" jdbcType="VARCHAR" property="wxDescription" />
+        <result column="wx_pic" jdbcType="VARCHAR" property="wxPic" />
+        <result column="wx_title" jdbcType="VARCHAR" property="wxTitle" />
+        <result column="attend_num_control" jdbcType="INTEGER" property="attendNumControl" />
+        <result column="is_audit_open" jdbcType="CHAR" property="isAuditOpen" />
+        <result column="submit_title" jdbcType="VARCHAR" property="submitTitle" />
+        <result column="submit_description" jdbcType="VARCHAR" property="submitDescription" />
+        <result column="is_sign_in_open" jdbcType="CHAR" property="isSignInOpen" />
+        <result column="campaign_state" jdbcType="CHAR" property="campaignState" />
+        <result column="tb_url" jdbcType="VARCHAR" property="tbUrl" />
+        <result column="wx_url" jdbcType="VARCHAR" property="wxUrl" />
+        <result column="is_long_term_activity" jdbcType="CHAR" property="isLongTermActivity" />
+        <result column="is_long_term_reservation" jdbcType="CHAR" property="isLongTermReservation" />
+        <result column="reservation_selectable_weekdays" jdbcType="VARCHAR" property="reservationSelectableWeekdays" />
+        <result column="reservation_selectable_stores" jdbcType="OTHER" property="reservationSelectableStores" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="days_ahead_reservation" jdbcType="INTEGER" property="daysAheadReservation" />
+        <result column="appid" jdbcType="VARCHAR" property="appid" />
+        <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+        <result column="app_id" jdbcType="VARCHAR" property="appId" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="status" jdbcType="CHAR" property="status" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, campaign_type, sign_start_time, sign_end_time, back_img, button_color,
+    button_text, contact_phone, start_time, end_time, location, link_address,
+    necessory_info, rich_digest, rich_detail, view_address, wx_description, wx_pic, wx_title,
+    attend_num_control, is_audit_open, submit_title, submit_description, is_sign_in_open,
+    campaign_state, tb_url, wx_url, is_long_term_activity, is_long_term_reservation,
+    reservation_selectable_weekdays, reservation_selectable_stores, days_ahead_reservation,
+    appid, ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator, modifier,
+    status
+  </sql>
+    <select id="listInviteActivityByName"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_campaign
+        <where>
+            <if test="name != null and name != null and name != ''">
+                and name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+            and status = 'A'
+        </where>
+    </select>
+
+</mapper>

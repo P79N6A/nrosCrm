@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ztesoft.zsmart.nros</groupId>
+        <artifactId>nros-crm</artifactId>
+        <version>1.0-RELEASE</version>
+    </parent>
+
+    <!--<groupId>com.ztesoft.zsmart.nros</groupId>-->
+    <artifactId>nros-crm-start</artifactId>
+    <packaging>jar</packaging>
+    <version>${parent.version}</version>
+    <name>crm-start</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ztesoft.zsmart.nros</groupId>
+            <artifactId>nros-crm-server</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ztesoft.zsmart.nros</groupId>
+            <artifactId>nros-base</artifactId>
+            <version>${base.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <executable>true</executable>
+                    <mainClass>com.ztesoft.zsmart.nros.crm.core.NrosCRMApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+</project>

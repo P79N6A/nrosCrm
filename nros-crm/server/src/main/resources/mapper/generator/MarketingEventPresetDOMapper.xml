@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator.MarketingEventPresetDOMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingEventPresetDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="event_name" jdbcType="VARCHAR" property="eventName" />
+    <result column="formular" jdbcType="VARCHAR" property="formular" />
+    <result column="event_code" jdbcType="VARCHAR" property="eventCode" />
+    <result column="event_filter" jdbcType="VARCHAR" property="eventFilter" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, event_name, formular, event_code, event_filter, ext_info, merchant_code, app_id, 
+    gmt_create, gmt_modified, creator, modifier, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_marketing_event_preset
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_marketing_event_preset
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingEventPresetDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_marketing_event_preset_id_seq')
+    </selectKey>
+    insert into crm_marketing_event_preset (id, event_name, formular, 
+      event_code, event_filter, ext_info, 
+      merchant_code, app_id, gmt_create, 
+      gmt_modified, creator, 
+      modifier, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{eventName,jdbcType=VARCHAR}, #{formular,jdbcType=VARCHAR}, 
+      #{eventCode,jdbcType=VARCHAR}, #{eventFilter,jdbcType=VARCHAR}, #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingEventPresetDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_marketing_event_preset_id_seq')
+    </selectKey>
+    insert into crm_marketing_event_preset
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="eventName != null">
+        event_name,
+      </if>
+      <if test="formular != null">
+        formular,
+      </if>
+      <if test="eventCode != null">
+        event_code,
+      </if>
+      <if test="eventFilter != null">
+        event_filter,
+      </if>
+      <if test="extInfo != null">
+        ext_info,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="eventName != null">
+        #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="formular != null">
+        #{formular,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCode != null">
+        #{eventCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventFilter != null">
+        #{eventFilter,jdbcType=VARCHAR},
+      </if>
+      <if test="extInfo != null">
+        #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingEventPresetDO">
+    update crm_marketing_event_preset
+    <set>
+      <if test="eventName != null">
+        event_name = #{eventName,jdbcType=VARCHAR},
+      </if>
+      <if test="formular != null">
+        formular = #{formular,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCode != null">
+        event_code = #{eventCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eventFilter != null">
+        event_filter = #{eventFilter,jdbcType=VARCHAR},
+      </if>
+      <if test="extInfo != null">
+        ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingEventPresetDO">
+    update crm_marketing_event_preset
+    set event_name = #{eventName,jdbcType=VARCHAR},
+      formular = #{formular,jdbcType=VARCHAR},
+      event_code = #{eventCode,jdbcType=VARCHAR},
+      event_filter = #{eventFilter,jdbcType=VARCHAR},
+      ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

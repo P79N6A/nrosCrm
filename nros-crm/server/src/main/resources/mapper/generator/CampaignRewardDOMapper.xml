@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator.CampaignRewardDOMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_compoun_inviter" jdbcType="CHAR" property="isCompounInviter" />
+    <result column="compoun_code_inviter" jdbcType="VARCHAR" property="compounCodeInviter" />
+    <result column="is_point_inviter" jdbcType="CHAR" property="isPointInviter" />
+    <result column="point_inviter" jdbcType="INTEGER" property="pointInviter" />
+    <result column="point_is_permanet_inviter" jdbcType="CHAR" property="pointIsPermanetInviter" />
+    <result column="pointvalid_after_days_inviter" jdbcType="INTEGER" property="pointvalidAfterDaysInviter" />
+    <result column="is_other_inviter" jdbcType="CHAR" property="isOtherInviter" />
+    <result column="other_inviter" jdbcType="VARCHAR" property="otherInviter" />
+    <result column="is_compoun_invitee" jdbcType="CHAR" property="isCompounInvitee" />
+    <result column="compoun_code_invitee" jdbcType="VARCHAR" property="compounCodeInvitee" />
+    <result column="is_point_invitee" jdbcType="CHAR" property="isPointInvitee" />
+    <result column="point_invitee" jdbcType="INTEGER" property="pointInvitee" />
+    <result column="point_is_permanet_invitee" jdbcType="CHAR" property="pointIsPermanetInvitee" />
+    <result column="pointvalid_after_days_invitee" jdbcType="INTEGER" property="pointvalidAfterDaysInvitee" />
+    <result column="is_other_invitee" jdbcType="CHAR" property="isOtherInvitee" />
+    <result column="other_invitee" jdbcType="VARCHAR" property="otherInvitee" />
+    <result column="campaign_id" jdbcType="BIGINT" property="campaignId" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, is_compoun_inviter, compoun_code_inviter, is_point_inviter, point_inviter, point_is_permanet_inviter, 
+    pointvalid_after_days_inviter, is_other_inviter, other_inviter, is_compoun_invitee, 
+    compoun_code_invitee, is_point_invitee, point_invitee, point_is_permanet_invitee, 
+    pointvalid_after_days_invitee, is_other_invitee, other_invitee, campaign_id, ext_info, 
+    merchant_code, app_id, gmt_create, gmt_modified, creator, modifier, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_campaign_reward
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_campaign_reward
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_reward_id_seq')
+    </selectKey>
+    insert into crm_campaign_reward (id, is_compoun_inviter, compoun_code_inviter, 
+      is_point_inviter, point_inviter, point_is_permanet_inviter, 
+      pointvalid_after_days_inviter, is_other_inviter, 
+      other_inviter, is_compoun_invitee, compoun_code_invitee, 
+      is_point_invitee, point_invitee, point_is_permanet_invitee, 
+      pointvalid_after_days_invitee, is_other_invitee, 
+      other_invitee, campaign_id, ext_info, 
+      merchant_code, app_id, gmt_create, 
+      gmt_modified, creator, 
+      modifier, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{isCompounInviter,jdbcType=CHAR}, #{compounCodeInviter,jdbcType=VARCHAR}, 
+      #{isPointInviter,jdbcType=CHAR}, #{pointInviter,jdbcType=INTEGER}, #{pointIsPermanetInviter,jdbcType=CHAR}, 
+      #{pointvalidAfterDaysInviter,jdbcType=INTEGER}, #{isOtherInviter,jdbcType=CHAR}, 
+      #{otherInviter,jdbcType=VARCHAR}, #{isCompounInvitee,jdbcType=CHAR}, #{compounCodeInvitee,jdbcType=VARCHAR}, 
+      #{isPointInvitee,jdbcType=CHAR}, #{pointInvitee,jdbcType=INTEGER}, #{pointIsPermanetInvitee,jdbcType=CHAR}, 
+      #{pointvalidAfterDaysInvitee,jdbcType=INTEGER}, #{isOtherInvitee,jdbcType=CHAR}, 
+      #{otherInvitee,jdbcType=VARCHAR}, #{campaignId,jdbcType=BIGINT}, #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_reward_id_seq')
+    </selectKey>
+    insert into crm_campaign_reward
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="isCompounInviter != null">
+        is_compoun_inviter,
+      </if>
+      <if test="compounCodeInviter != null">
+        compoun_code_inviter,
+      </if>
+      <if test="isPointInviter != null">
+        is_point_inviter,
+      </if>
+      <if test="pointInviter != null">
+        point_inviter,
+      </if>
+      <if test="pointIsPermanetInviter != null">
+        point_is_permanet_inviter,
+      </if>
+      <if test="pointvalidAfterDaysInviter != null">
+        pointvalid_after_days_inviter,
+      </if>
+      <if test="isOtherInviter != null">
+        is_other_inviter,
+      </if>
+      <if test="otherInviter != null">
+        other_inviter,
+      </if>
+      <if test="isCompounInvitee != null">
+        is_compoun_invitee,
+      </if>
+      <if test="compounCodeInvitee != null">
+        compoun_code_invitee,
+      </if>
+      <if test="isPointInvitee != null">
+        is_point_invitee,
+      </if>
+      <if test="pointInvitee != null">
+        point_invitee,
+      </if>
+      <if test="pointIsPermanetInvitee != null">
+        point_is_permanet_invitee,
+      </if>
+      <if test="pointvalidAfterDaysInvitee != null">
+        pointvalid_after_days_invitee,
+      </if>
+      <if test="isOtherInvitee != null">
+        is_other_invitee,
+      </if>
+      <if test="otherInvitee != null">
+        other_invitee,
+      </if>
+      <if test="campaignId != null">
+        campaign_id,
+      </if>
+      <if test="extInfo != null">
+        ext_info,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="isCompounInviter != null">
+        #{isCompounInviter,jdbcType=CHAR},
+      </if>
+      <if test="compounCodeInviter != null">
+        #{compounCodeInviter,jdbcType=VARCHAR},
+      </if>
+      <if test="isPointInviter != null">
+        #{isPointInviter,jdbcType=CHAR},
+      </if>
+      <if test="pointInviter != null">
+        #{pointInviter,jdbcType=INTEGER},
+      </if>
+      <if test="pointIsPermanetInviter != null">
+        #{pointIsPermanetInviter,jdbcType=CHAR},
+      </if>
+      <if test="pointvalidAfterDaysInviter != null">
+        #{pointvalidAfterDaysInviter,jdbcType=INTEGER},
+      </if>
+      <if test="isOtherInviter != null">
+        #{isOtherInviter,jdbcType=CHAR},
+      </if>
+      <if test="otherInviter != null">
+        #{otherInviter,jdbcType=VARCHAR},
+      </if>
+      <if test="isCompounInvitee != null">
+        #{isCompounInvitee,jdbcType=CHAR},
+      </if>
+      <if test="compounCodeInvitee != null">
+        #{compounCodeInvitee,jdbcType=VARCHAR},
+      </if>
+      <if test="isPointInvitee != null">
+        #{isPointInvitee,jdbcType=CHAR},
+      </if>
+      <if test="pointInvitee != null">
+        #{pointInvitee,jdbcType=INTEGER},
+      </if>
+      <if test="pointIsPermanetInvitee != null">
+        #{pointIsPermanetInvitee,jdbcType=CHAR},
+      </if>
+      <if test="pointvalidAfterDaysInvitee != null">
+        #{pointvalidAfterDaysInvitee,jdbcType=INTEGER},
+      </if>
+      <if test="isOtherInvitee != null">
+        #{isOtherInvitee,jdbcType=CHAR},
+      </if>
+      <if test="otherInvitee != null">
+        #{otherInvitee,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignId != null">
+        #{campaignId,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO">
+    update crm_campaign_reward
+    <set>
+      <if test="isCompounInviter != null">
+        is_compoun_inviter = #{isCompounInviter,jdbcType=CHAR},
+      </if>
+      <if test="compounCodeInviter != null">
+        compoun_code_inviter = #{compounCodeInviter,jdbcType=VARCHAR},
+      </if>
+      <if test="isPointInviter != null">
+        is_point_inviter = #{isPointInviter,jdbcType=CHAR},
+      </if>
+      <if test="pointInviter != null">
+        point_inviter = #{pointInviter,jdbcType=INTEGER},
+      </if>
+      <if test="pointIsPermanetInviter != null">
+        point_is_permanet_inviter = #{pointIsPermanetInviter,jdbcType=CHAR},
+      </if>
+      <if test="pointvalidAfterDaysInviter != null">
+        pointvalid_after_days_inviter = #{pointvalidAfterDaysInviter,jdbcType=INTEGER},
+      </if>
+      <if test="isOtherInviter != null">
+        is_other_inviter = #{isOtherInviter,jdbcType=CHAR},
+      </if>
+      <if test="otherInviter != null">
+        other_inviter = #{otherInviter,jdbcType=VARCHAR},
+      </if>
+      <if test="isCompounInvitee != null">
+        is_compoun_invitee = #{isCompounInvitee,jdbcType=CHAR},
+      </if>
+      <if test="compounCodeInvitee != null">
+        compoun_code_invitee = #{compounCodeInvitee,jdbcType=VARCHAR},
+      </if>
+      <if test="isPointInvitee != null">
+        is_point_invitee = #{isPointInvitee,jdbcType=CHAR},
+      </if>
+      <if test="pointInvitee != null">
+        point_invitee = #{pointInvitee,jdbcType=INTEGER},
+      </if>
+      <if test="pointIsPermanetInvitee != null">
+        point_is_permanet_invitee = #{pointIsPermanetInvitee,jdbcType=CHAR},
+      </if>
+      <if test="pointvalidAfterDaysInvitee != null">
+        pointvalid_after_days_invitee = #{pointvalidAfterDaysInvitee,jdbcType=INTEGER},
+      </if>
+      <if test="isOtherInvitee != null">
+        is_other_invitee = #{isOtherInvitee,jdbcType=CHAR},
+      </if>
+      <if test="otherInvitee != null">
+        other_invitee = #{otherInvitee,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignId != null">
+        campaign_id = #{campaignId,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO">
+    update crm_campaign_reward
+    set is_compoun_inviter = #{isCompounInviter,jdbcType=CHAR},
+      compoun_code_inviter = #{compounCodeInviter,jdbcType=VARCHAR},
+      is_point_inviter = #{isPointInviter,jdbcType=CHAR},
+      point_inviter = #{pointInviter,jdbcType=INTEGER},
+      point_is_permanet_inviter = #{pointIsPermanetInviter,jdbcType=CHAR},
+      pointvalid_after_days_inviter = #{pointvalidAfterDaysInviter,jdbcType=INTEGER},
+      is_other_inviter = #{isOtherInviter,jdbcType=CHAR},
+      other_inviter = #{otherInviter,jdbcType=VARCHAR},
+      is_compoun_invitee = #{isCompounInvitee,jdbcType=CHAR},
+      compoun_code_invitee = #{compounCodeInvitee,jdbcType=VARCHAR},
+      is_point_invitee = #{isPointInvitee,jdbcType=CHAR},
+      point_invitee = #{pointInvitee,jdbcType=INTEGER},
+      point_is_permanet_invitee = #{pointIsPermanetInvitee,jdbcType=CHAR},
+      pointvalid_after_days_invitee = #{pointvalidAfterDaysInvitee,jdbcType=INTEGER},
+      is_other_invitee = #{isOtherInvitee,jdbcType=CHAR},
+      other_invitee = #{otherInvitee,jdbcType=VARCHAR},
+      campaign_id = #{campaignId,jdbcType=BIGINT},
+      ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

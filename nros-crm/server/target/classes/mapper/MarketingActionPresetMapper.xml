@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.MarketingActionPresetMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.MarketingActionPresetDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="action_name" jdbcType="VARCHAR" property="actionName" />
+    <result column="action_type" jdbcType="CHAR" property="actionType" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, action_name, action_type, class_name, ext_info, merchant_code, app_id, gmt_create,
+    gmt_modified, creator, modifier, status
+  </sql>
+  <select id="selectByActionType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_marketing_action_preset
+    where action_type = #{id,jdbcType=VARCHAR} limit 1
+  </select>
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.CampaignRewardMapper">
+    <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="is_compoun_inviter" jdbcType="CHAR" property="isCompounInviter" />
+        <result column="compoun_code_inviter" jdbcType="VARCHAR" property="compounCodeInviter" />
+        <result column="is_point_inviter" jdbcType="CHAR" property="isPointInviter" />
+        <result column="point_inviter" jdbcType="INTEGER" property="pointInviter" />
+        <result column="point_is_permanet_inviter" jdbcType="CHAR" property="pointIsPermanetInviter" />
+        <result column="pointvalid_after_days_inviter" jdbcType="INTEGER" property="pointvalidAfterDaysInviter" />
+        <result column="is_other_inviter" jdbcType="CHAR" property="isOtherInviter" />
+        <result column="other_inviter" jdbcType="VARCHAR" property="otherInviter" />
+        <result column="is_compoun_invitee" jdbcType="CHAR" property="isCompounInvitee" />
+        <result column="compoun_code_invitee" jdbcType="VARCHAR" property="compounCodeInvitee" />
+        <result column="is_point_invitee" jdbcType="CHAR" property="isPointInvitee" />
+        <result column="point_invitee" jdbcType="INTEGER" property="pointInvitee" />
+        <result column="point_is_permanet_invitee" jdbcType="CHAR" property="pointIsPermanetInvitee" />
+        <result column="pointvalid_after_days_invitee" jdbcType="INTEGER" property="pointvalidAfterDaysInvitee" />
+        <result column="is_other_invitee" jdbcType="CHAR" property="isOtherInvitee" />
+        <result column="other_invitee" jdbcType="VARCHAR" property="otherInvitee" />
+        <result column="campaign_id" jdbcType="BIGINT" property="campaignId" />
+        <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+        <result column="app_id" jdbcType="VARCHAR" property="appId" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="status" jdbcType="CHAR" property="status" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, is_compoun_inviter, compoun_code_inviter, is_point_inviter, point_inviter, point_is_permanet_inviter,
+    pointvalid_after_days_inviter, is_other_inviter, other_inviter, is_compoun_invitee,
+    compoun_code_invitee, is_point_invitee, point_invitee, point_is_permanet_invitee,
+    pointvalid_after_days_invitee, is_other_invitee, other_invitee, campaign_id, ext_info,
+    merchant_code, app_id, gmt_create, gmt_modified, creator, modifier, status
+  </sql>
+    <select id="selectByCampaignId" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignRewardDO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_campaign_reward
+        where campaign_id = #{campaignId,jdbcType=BIGINT} limit 1
+    </select>
+</mapper>

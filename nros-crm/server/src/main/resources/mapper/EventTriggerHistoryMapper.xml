@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.EventTriggerHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.EventTriggerHistoryDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="event_code" jdbcType="VARCHAR" property="eventCode" />
+    <result column="member_id" jdbcType="BIGINT" property="memberId" />
+    <result column="member_name" jdbcType="VARCHAR" property="memberName" />
+    <result column="member_phone" jdbcType="VARCHAR" property="memberPhone" />
+    <result column="wx_nickname" jdbcType="VARCHAR" property="wxNickname" />
+    <result column="is_process_finished" jdbcType="CHAR" property="isProcessFinished" />
+    <result column="marketing_id" jdbcType="BIGINT" property="marketingId" />
+    <result column="identify_id" jdbcType="BIGINT" property="identifyId" />
+    <result column="identify_code" jdbcType="VARCHAR" property="identifyCode" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, event_code, member_id, member_name, member_phone, wx_nickname, is_process_finished,
+    marketing_id, identify_id, identify_code, ext_info, merchant_code, app_id, gmt_create,
+    gmt_modified, creator, modifier, status
+  </sql>
+  <select id="eventTriggerList" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.EventTriggerHistoryDO" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_event_trigger_history
+    where marketing_id = #{marketingId,jdbcType=BIGINT}
+    ORDER BY gmt_modified desc,gmt_create desc
+  </select>
+
+  <select id="selectTriggerCountAllByMarketingId" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.EventTriggerHistoryDO" resultType="java.lang.Integer">
+    select
+    count(1)
+    from crm_event_trigger_history
+    where marketing_id = #{marketingId,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectTriggerCountTodayByMarketingId" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.EventTriggerHistoryDO" resultType="java.lang.Integer">
+    select
+    count(1)
+    from crm_event_trigger_history
+    where
+    marketing_id = #{marketingId,jdbcType=BIGINT}
+    and to_char(gmt_create, 'yyyy-MM-dd') = to_char(now(), 'yyyy-MM-dd')
+  </select>
+
+  <select id="selectProcessFinishedCountByMarketingId" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.EventTriggerHistoryDO" resultType="java.lang.Integer">
+    select
+    count(1)
+    from crm_event_trigger_history
+    where marketing_id = #{marketingId,jdbcType=BIGINT}
+    and is_process_finished ='1'
+  </select>
+
+  <select id="queryTriggerHisByUserAndMarketingId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from crm_event_trigger_history
+    where 1=1
+    and marketing_id = #{marketingId,jdbcType=BIGINT}
+    and member_id = #{memberId,jdbcType=BIGINT}
+    <if test="merchantCode != null">
+      and merchant_code = #{merchantCode,jdbcType=VARCHAR}
+    </if>
+    ORDER BY gmt_create desc
+  </select>
+</mapper>

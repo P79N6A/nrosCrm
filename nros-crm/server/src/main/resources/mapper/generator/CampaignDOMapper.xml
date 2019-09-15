@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator.CampaignDOMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="campaign_type" jdbcType="CHAR" property="campaignType" />
+    <result column="sign_start_time" jdbcType="TIMESTAMP" property="signStartTime" />
+    <result column="sign_end_time" jdbcType="TIMESTAMP" property="signEndTime" />
+    <result column="back_img" jdbcType="VARCHAR" property="backImg" />
+    <result column="button_color" jdbcType="VARCHAR" property="buttonColor" />
+    <result column="button_text" jdbcType="VARCHAR" property="buttonText" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="link_address" jdbcType="VARCHAR" property="linkAddress" />
+    <result column="rich_pic" jdbcType="VARCHAR" property="richPic" />
+    <result column="necessory_info" jdbcType="VARCHAR" property="necessoryInfo" />
+    <result column="rich_digest" jdbcType="VARCHAR" property="richDigest" />
+    <result column="rich_detail" jdbcType="VARCHAR" property="richDetail" />
+    <result column="view_address" jdbcType="VARCHAR" property="viewAddress" />
+    <result column="wx_description" jdbcType="VARCHAR" property="wxDescription" />
+    <result column="wx_pic" jdbcType="VARCHAR" property="wxPic" />
+    <result column="wx_title" jdbcType="VARCHAR" property="wxTitle" />
+    <result column="attend_num_control" jdbcType="INTEGER" property="attendNumControl" />
+    <result column="is_audit_open" jdbcType="CHAR" property="isAuditOpen" />
+    <result column="submit_title" jdbcType="VARCHAR" property="submitTitle" />
+    <result column="submit_description" jdbcType="VARCHAR" property="submitDescription" />
+    <result column="is_sign_in_open" jdbcType="CHAR" property="isSignInOpen" />
+    <result column="campaign_state" jdbcType="CHAR" property="campaignState" />
+    <result column="tb_url" jdbcType="VARCHAR" property="tbUrl" />
+    <result column="wx_url" jdbcType="VARCHAR" property="wxUrl" />
+    <result column="is_long_term_activity" jdbcType="CHAR" property="isLongTermActivity" />
+    <result column="is_long_term_reservation" jdbcType="CHAR" property="isLongTermReservation" />
+    <result column="reservation_selectable_weekdays" jdbcType="VARCHAR" property="reservationSelectableWeekdays" />
+    <result column="reservation_selectable_stores" jdbcType="OTHER" property="reservationSelectableStores" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="days_ahead_reservation" jdbcType="INTEGER" property="daysAheadReservation" />
+    <result column="appid" jdbcType="VARCHAR" property="appid" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, campaign_type, sign_start_time, sign_end_time, back_img, button_color, 
+    button_text, contact_phone, start_time, end_time, location, link_address, rich_pic, 
+    necessory_info, rich_digest, rich_detail, view_address, wx_description, wx_pic, wx_title, 
+    attend_num_control, is_audit_open, submit_title, submit_description, is_sign_in_open, 
+    campaign_state, tb_url, wx_url, is_long_term_activity, is_long_term_reservation, 
+    reservation_selectable_weekdays, reservation_selectable_stores, days_ahead_reservation, 
+    appid, ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator, modifier, 
+    status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_campaign
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_campaign
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_id_seq')
+    </selectKey>
+    insert into crm_campaign (id, name, campaign_type, 
+      sign_start_time, sign_end_time, back_img, 
+      button_color, button_text, contact_phone, 
+      start_time, end_time, location, 
+      link_address, rich_pic, necessory_info, 
+      rich_digest, rich_detail, view_address, 
+      wx_description, wx_pic, wx_title, 
+      attend_num_control, is_audit_open, submit_title, 
+      submit_description, is_sign_in_open, campaign_state, 
+      tb_url, wx_url, is_long_term_activity, 
+      is_long_term_reservation, reservation_selectable_weekdays, 
+      reservation_selectable_stores, 
+      days_ahead_reservation, appid, ext_info, 
+      merchant_code, app_id, gmt_create, 
+      gmt_modified, creator, 
+      modifier, 
+      status)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{campaignType,jdbcType=CHAR}, 
+      #{signStartTime,jdbcType=TIMESTAMP}, #{signEndTime,jdbcType=TIMESTAMP}, #{backImg,jdbcType=VARCHAR}, 
+      #{buttonColor,jdbcType=VARCHAR}, #{buttonText,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{location,jdbcType=VARCHAR}, 
+      #{linkAddress,jdbcType=VARCHAR}, #{richPic,jdbcType=VARCHAR}, #{necessoryInfo,jdbcType=VARCHAR}, 
+      #{richDigest,jdbcType=VARCHAR}, #{richDetail,jdbcType=VARCHAR}, #{viewAddress,jdbcType=VARCHAR}, 
+      #{wxDescription,jdbcType=VARCHAR}, #{wxPic,jdbcType=VARCHAR}, #{wxTitle,jdbcType=VARCHAR}, 
+      #{attendNumControl,jdbcType=INTEGER}, #{isAuditOpen,jdbcType=CHAR}, #{submitTitle,jdbcType=VARCHAR}, 
+      #{submitDescription,jdbcType=VARCHAR}, #{isSignInOpen,jdbcType=CHAR}, #{campaignState,jdbcType=CHAR}, 
+      #{tbUrl,jdbcType=VARCHAR}, #{wxUrl,jdbcType=VARCHAR}, #{isLongTermActivity,jdbcType=CHAR}, 
+      #{isLongTermReservation,jdbcType=CHAR}, #{reservationSelectableWeekdays,jdbcType=VARCHAR}, 
+      #{reservationSelectableStores,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{daysAheadReservation,jdbcType=INTEGER}, #{appid,jdbcType=VARCHAR}, #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{status,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_id_seq')
+    </selectKey>
+    insert into crm_campaign
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="name != null">
+        name,
+      </if>
+      <if test="campaignType != null">
+        campaign_type,
+      </if>
+      <if test="signStartTime != null">
+        sign_start_time,
+      </if>
+      <if test="signEndTime != null">
+        sign_end_time,
+      </if>
+      <if test="backImg != null">
+        back_img,
+      </if>
+      <if test="buttonColor != null">
+        button_color,
+      </if>
+      <if test="buttonText != null">
+        button_text,
+      </if>
+      <if test="contactPhone != null">
+        contact_phone,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="linkAddress != null">
+        link_address,
+      </if>
+      <if test="richPic != null">
+        rich_pic,
+      </if>
+      <if test="necessoryInfo != null">
+        necessory_info,
+      </if>
+      <if test="richDigest != null">
+        rich_digest,
+      </if>
+      <if test="richDetail != null">
+        rich_detail,
+      </if>
+      <if test="viewAddress != null">
+        view_address,
+      </if>
+      <if test="wxDescription != null">
+        wx_description,
+      </if>
+      <if test="wxPic != null">
+        wx_pic,
+      </if>
+      <if test="wxTitle != null">
+        wx_title,
+      </if>
+      <if test="attendNumControl != null">
+        attend_num_control,
+      </if>
+      <if test="isAuditOpen != null">
+        is_audit_open,
+      </if>
+      <if test="submitTitle != null">
+        submit_title,
+      </if>
+      <if test="submitDescription != null">
+        submit_description,
+      </if>
+      <if test="isSignInOpen != null">
+        is_sign_in_open,
+      </if>
+      <if test="campaignState != null">
+        campaign_state,
+      </if>
+      <if test="tbUrl != null">
+        tb_url,
+      </if>
+      <if test="wxUrl != null">
+        wx_url,
+      </if>
+      <if test="isLongTermActivity != null">
+        is_long_term_activity,
+      </if>
+      <if test="isLongTermReservation != null">
+        is_long_term_reservation,
+      </if>
+      <if test="reservationSelectableWeekdays != null">
+        reservation_selectable_weekdays,
+      </if>
+      <if test="reservationSelectableStores != null">
+        reservation_selectable_stores,
+      </if>
+      <if test="daysAheadReservation != null">
+        days_ahead_reservation,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="extInfo != null">
+        ext_info,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignType != null">
+        #{campaignType,jdbcType=CHAR},
+      </if>
+      <if test="signStartTime != null">
+        #{signStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signEndTime != null">
+        #{signEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backImg != null">
+        #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonColor != null">
+        #{buttonColor,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonText != null">
+        #{buttonText,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="linkAddress != null">
+        #{linkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="richPic != null">
+        #{richPic,jdbcType=VARCHAR},
+      </if>
+      <if test="necessoryInfo != null">
+        #{necessoryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="richDigest != null">
+        #{richDigest,jdbcType=VARCHAR},
+      </if>
+      <if test="richDetail != null">
+        #{richDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="viewAddress != null">
+        #{viewAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="wxDescription != null">
+        #{wxDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="wxPic != null">
+        #{wxPic,jdbcType=VARCHAR},
+      </if>
+      <if test="wxTitle != null">
+        #{wxTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="attendNumControl != null">
+        #{attendNumControl,jdbcType=INTEGER},
+      </if>
+      <if test="isAuditOpen != null">
+        #{isAuditOpen,jdbcType=CHAR},
+      </if>
+      <if test="submitTitle != null">
+        #{submitTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDescription != null">
+        #{submitDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="isSignInOpen != null">
+        #{isSignInOpen,jdbcType=CHAR},
+      </if>
+      <if test="campaignState != null">
+        #{campaignState,jdbcType=CHAR},
+      </if>
+      <if test="tbUrl != null">
+        #{tbUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUrl != null">
+        #{wxUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isLongTermActivity != null">
+        #{isLongTermActivity,jdbcType=CHAR},
+      </if>
+      <if test="isLongTermReservation != null">
+        #{isLongTermReservation,jdbcType=CHAR},
+      </if>
+      <if test="reservationSelectableWeekdays != null">
+        #{reservationSelectableWeekdays,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationSelectableStores != null">
+        #{reservationSelectableStores,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="daysAheadReservation != null">
+        #{daysAheadReservation,jdbcType=INTEGER},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="extInfo != null">
+        #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO">
+    update crm_campaign
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignType != null">
+        campaign_type = #{campaignType,jdbcType=CHAR},
+      </if>
+      <if test="signStartTime != null">
+        sign_start_time = #{signStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signEndTime != null">
+        sign_end_time = #{signEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backImg != null">
+        back_img = #{backImg,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonColor != null">
+        button_color = #{buttonColor,jdbcType=VARCHAR},
+      </if>
+      <if test="buttonText != null">
+        button_text = #{buttonText,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null">
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="linkAddress != null">
+        link_address = #{linkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="richPic != null">
+        rich_pic = #{richPic,jdbcType=VARCHAR},
+      </if>
+      <if test="necessoryInfo != null">
+        necessory_info = #{necessoryInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="richDigest != null">
+        rich_digest = #{richDigest,jdbcType=VARCHAR},
+      </if>
+      <if test="richDetail != null">
+        rich_detail = #{richDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="viewAddress != null">
+        view_address = #{viewAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="wxDescription != null">
+        wx_description = #{wxDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="wxPic != null">
+        wx_pic = #{wxPic,jdbcType=VARCHAR},
+      </if>
+      <if test="wxTitle != null">
+        wx_title = #{wxTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="attendNumControl != null">
+        attend_num_control = #{attendNumControl,jdbcType=INTEGER},
+      </if>
+      <if test="isAuditOpen != null">
+        is_audit_open = #{isAuditOpen,jdbcType=CHAR},
+      </if>
+      <if test="submitTitle != null">
+        submit_title = #{submitTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDescription != null">
+        submit_description = #{submitDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="isSignInOpen != null">
+        is_sign_in_open = #{isSignInOpen,jdbcType=CHAR},
+      </if>
+      <if test="campaignState != null">
+        campaign_state = #{campaignState,jdbcType=CHAR},
+      </if>
+      <if test="tbUrl != null">
+        tb_url = #{tbUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUrl != null">
+        wx_url = #{wxUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isLongTermActivity != null">
+        is_long_term_activity = #{isLongTermActivity,jdbcType=CHAR},
+      </if>
+      <if test="isLongTermReservation != null">
+        is_long_term_reservation = #{isLongTermReservation,jdbcType=CHAR},
+      </if>
+      <if test="reservationSelectableWeekdays != null">
+        reservation_selectable_weekdays = #{reservationSelectableWeekdays,jdbcType=VARCHAR},
+      </if>
+      <if test="reservationSelectableStores != null">
+        reservation_selectable_stores = #{reservationSelectableStores,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="daysAheadReservation != null">
+        days_ahead_reservation = #{daysAheadReservation,jdbcType=INTEGER},
+      </if>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="extInfo != null">
+        ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignDO">
+    update crm_campaign
+    set name = #{name,jdbcType=VARCHAR},
+      campaign_type = #{campaignType,jdbcType=CHAR},
+      sign_start_time = #{signStartTime,jdbcType=TIMESTAMP},
+      sign_end_time = #{signEndTime,jdbcType=TIMESTAMP},
+      back_img = #{backImg,jdbcType=VARCHAR},
+      button_color = #{buttonColor,jdbcType=VARCHAR},
+      button_text = #{buttonText,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      location = #{location,jdbcType=VARCHAR},
+      link_address = #{linkAddress,jdbcType=VARCHAR},
+      rich_pic = #{richPic,jdbcType=VARCHAR},
+      necessory_info = #{necessoryInfo,jdbcType=VARCHAR},
+      rich_digest = #{richDigest,jdbcType=VARCHAR},
+      rich_detail = #{richDetail,jdbcType=VARCHAR},
+      view_address = #{viewAddress,jdbcType=VARCHAR},
+      wx_description = #{wxDescription,jdbcType=VARCHAR},
+      wx_pic = #{wxPic,jdbcType=VARCHAR},
+      wx_title = #{wxTitle,jdbcType=VARCHAR},
+      attend_num_control = #{attendNumControl,jdbcType=INTEGER},
+      is_audit_open = #{isAuditOpen,jdbcType=CHAR},
+      submit_title = #{submitTitle,jdbcType=VARCHAR},
+      submit_description = #{submitDescription,jdbcType=VARCHAR},
+      is_sign_in_open = #{isSignInOpen,jdbcType=CHAR},
+      campaign_state = #{campaignState,jdbcType=CHAR},
+      tb_url = #{tbUrl,jdbcType=VARCHAR},
+      wx_url = #{wxUrl,jdbcType=VARCHAR},
+      is_long_term_activity = #{isLongTermActivity,jdbcType=CHAR},
+      is_long_term_reservation = #{isLongTermReservation,jdbcType=CHAR},
+      reservation_selectable_weekdays = #{reservationSelectableWeekdays,jdbcType=VARCHAR},
+      reservation_selectable_stores = #{reservationSelectableStores,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      days_ahead_reservation = #{daysAheadReservation,jdbcType=INTEGER},
+      appid = #{appid,jdbcType=VARCHAR},
+      ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      status = #{status,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

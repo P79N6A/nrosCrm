@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.CampaignFeedbackMapper">
+    <resultMap id="BaseResultMap"
+               type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignFeedbackDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="feedback_type" jdbcType="CHAR" property="feedbackType"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="device" jdbcType="VARCHAR" property="device"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="channel_id" jdbcType="BIGINT" property="channelId"/>
+        <result column="share_member_id" jdbcType="BIGINT" property="shareMemberId"/>
+        <result column="inviter_contact_id" jdbcType="BIGINT" property="inviterContactId"/>
+        <result column="guide_id" jdbcType="BIGINT" property="guideId"/>
+        <result column="wx_open_id" jdbcType="VARCHAR" property="wxOpenId"/>
+        <result column="campaign_id" jdbcType="BIGINT" property="campaignId"/>
+        <result column="ext_info" jdbcType="OTHER" property="extInfo"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode"/>
+        <result column="app_id" jdbcType="VARCHAR" property="appId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="creator" jdbcType="OTHER" property="creator"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="modifier" jdbcType="OTHER" property="modifier"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, feedback_type, start_time, end_time, device, location, channel_id, share_member_id, 
+    inviter_contact_id, guide_id, wx_open_id, campaign_id, ext_info, merchant_code, app_id, 
+    gmt_create, gmt_modified, creator, modifier, status
+  </sql>
+    <select id="countToadyCounter" parameterType="java.lang.Long" resultType="java.lang.Integer">
+        select
+        count(id)
+        from crm_campaign_feedback
+        where campaign_id = #{campaignId,jdbcType=BIGINT}
+        AND gmt_create between current_date and current_date+1
+    </select>
+</mapper>

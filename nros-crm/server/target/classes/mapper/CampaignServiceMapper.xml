@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.CampaignServiceMapper">
+    <resultMap id="BaseResultMap"
+               type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="invitor_phone" jdbcType="VARCHAR" property="invitorPhone"/>
+        <result column="register_phone" jdbcType="VARCHAR" property="registerPhone"/>
+        <result column="sign_phone" jdbcType="VARCHAR" property="signPhone"/>
+        <result column="reservation_store_id" jdbcType="BIGINT" property="reservationStoreId"/>
+        <result column="is_new" jdbcType="CHAR" property="isNew"/>
+        <result column="audit_status" jdbcType="CHAR" property="auditStatus"/>
+        <result column="is_sign_in" jdbcType="CHAR" property="isSignIn"/>
+        <result column="sign_in_code" jdbcType="VARCHAR" property="signInCode"/>
+        <result column="sign_in_time" jdbcType="VARCHAR" property="signInTime"/>
+        <result column="sign_time" jdbcType="VARCHAR" property="signTime"/>
+        <result column="register_time" jdbcType="TIMESTAMP" property="registerTime"/>
+        <result column="is_reward" jdbcType="CHAR" property="isReward"/>
+        <result column="reserve_time_id" jdbcType="BIGINT" property="reserveTimeId"/>
+        <result column="campaign_id" jdbcType="BIGINT" property="campaignId"/>
+        <result column="ext_info" jdbcType="OTHER" property="extInfo"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode"/>
+        <result column="app_id" jdbcType="VARCHAR" property="appId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="creator" jdbcType="OTHER" property="creator"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="modifier" jdbcType="OTHER" property="modifier"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+        <result column="sign_name" jdbcType="VARCHAR" property="signName" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, invitor_phone, register_phone, sign_phone, reservation_store_id, is_new, audit_status,
+    is_sign_in, sign_in_code, sign_in_time, sign_time, register_time, is_reward, reserve_time_id,
+    campaign_id, ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator,
+    modifier, status, sign_name
+  </sql>
+    <select id="selectInviteDetail"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_campaign_service
+        where campaign_id = #{campaignId,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectInviteDetailByDate"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.client.model.query.QueryInviteCampaignQuery"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_campaign_service
+        <where>
+            <if test="campaignId != null and campaignId != ''">
+                AND campaign_id = #{campaignId,jdbcType=BIGINT}
+            </if>
+            <if test="registerStartTime != null and registerStartTime != ''">
+                <![CDATA[ and register_time >= to_timestamp(#{registerStartTime,jdbcType=VARCHAR}, 'yyyy-MM-dd hh24:mi:ss') ]]>
+            </if>
+            <if test="registerEndTime != null and registerEndTime != ''">
+                <![CDATA[ and register_time <= to_timestamp(#{registerEndTime,jdbcType=VARCHAR}, 'yyyy-MM-dd hh24:mi:ss') ]]>
+            </if>
+        </where>
+    </select>
+    <select id="querySignList" parameterType="com.ztesoft.zsmart.nros.crm.core.client.model.query.SignInListQuery"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from crm_campaign_service
+        <where>
+            <if test="campaignId != null and campaignId != ''">
+                AND campaign_id = #{campaignId,jdbcType=BIGINT}
+            </if>
+            <if test="isSignIn != null and isSignIn != ''">
+                AND is_sign_in = #{isSignIn,jdbcType=CHAR}
+            </if>
+            <if test="signTimeFore != null and signTimeFore != ''">
+                AND sign_time::date >= #{signTimeFore, jdbcType=VARCHAR}::date
+            </if>
+            <if test="signTimeAfter != null and signTimeAfter != ''">
+                AND #{signTimeAfter, jdbcType=VARCHAR}::date >= sign_time::date
+            </if>
+            <if test="signInTimeFore != null and signInTimeFore != ''">
+                AND sign_in_time::date >= #{signInTimeFore, jdbcType=VARCHAR}::date
+            </if>
+            <if test="signInTimeAfter != null and signInTimeAfter != ''">
+                AND #{signInTimeAfter, jdbcType=VARCHAR}::date >= sign_in_time::date
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="selectBySignPhone" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignServiceDO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from crm_campaign_service
+        where sign_phone = #{signPhone,jdbcType=VARCHAR}
+        and campaign_id = #{campaignId,jdbcType=BIGINT}
+    </select>
+</mapper>

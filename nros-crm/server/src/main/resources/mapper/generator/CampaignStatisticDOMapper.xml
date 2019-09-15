@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.generator.CampaignStatisticDOMapper">
+  <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="click_counter" jdbcType="INTEGER" property="clickCounter" />
+    <result column="pageview_counter" jdbcType="INTEGER" property="pageviewCounter" />
+    <result column="stay_time" jdbcType="VARCHAR" property="stayTime" />
+    <result column="stay_time_counter" jdbcType="INTEGER" property="stayTimeCounter" />
+    <result column="register_num" jdbcType="INTEGER" property="registerNum" />
+    <result column="recommand_num" jdbcType="INTEGER" property="recommandNum" />
+    <result column="wx_share_counter" jdbcType="INTEGER" property="wxShareCounter" />
+    <result column="real_attend_num" jdbcType="INTEGER" property="realAttendNum" />
+    <result column="campaign_type" jdbcType="VARCHAR" property="campaignType" />
+    <result column="campaign_id" jdbcType="BIGINT" property="campaignId" />
+    <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="sign_up_num" jdbcType="INTEGER" property="signUpNum" />
+    <result column="sign_in_num" jdbcType="INTEGER" property="signInNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, click_counter, pageview_counter, stay_time, stay_time_counter, register_num, 
+    recommand_num, wx_share_counter, real_attend_num, campaign_type, campaign_id, ext_info, 
+    merchant_code, app_id, gmt_create, gmt_modified, creator, modifier, status, sign_up_num, 
+    sign_in_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_campaign_statistic
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_campaign_statistic
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_statistic_id_seq')
+    </selectKey>
+    insert into crm_campaign_statistic (id, click_counter, pageview_counter, 
+      stay_time, stay_time_counter, register_num, 
+      recommand_num, wx_share_counter, real_attend_num, 
+      campaign_type, campaign_id, ext_info, 
+      merchant_code, app_id, gmt_create, 
+      gmt_modified, creator, 
+      modifier, 
+      status, sign_up_num, sign_in_num
+      )
+    values (#{id,jdbcType=BIGINT}, #{clickCounter,jdbcType=INTEGER}, #{pageviewCounter,jdbcType=INTEGER}, 
+      #{stayTime,jdbcType=VARCHAR}, #{stayTimeCounter,jdbcType=INTEGER}, #{registerNum,jdbcType=INTEGER}, 
+      #{recommandNum,jdbcType=INTEGER}, #{wxShareCounter,jdbcType=INTEGER}, #{realAttendNum,jdbcType=INTEGER}, 
+      #{campaignType,jdbcType=VARCHAR}, #{campaignId,jdbcType=BIGINT}, #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{merchantCode,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP}, #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler}, 
+      #{status,jdbcType=CHAR}, #{signUpNum,jdbcType=INTEGER}, #{signInNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      select nextval('crm_campaign_statistic_id_seq')
+    </selectKey>
+    insert into crm_campaign_statistic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="clickCounter != null">
+        click_counter,
+      </if>
+      <if test="pageviewCounter != null">
+        pageview_counter,
+      </if>
+      <if test="stayTime != null">
+        stay_time,
+      </if>
+      <if test="stayTimeCounter != null">
+        stay_time_counter,
+      </if>
+      <if test="registerNum != null">
+        register_num,
+      </if>
+      <if test="recommandNum != null">
+        recommand_num,
+      </if>
+      <if test="wxShareCounter != null">
+        wx_share_counter,
+      </if>
+      <if test="realAttendNum != null">
+        real_attend_num,
+      </if>
+      <if test="campaignType != null">
+        campaign_type,
+      </if>
+      <if test="campaignId != null">
+        campaign_id,
+      </if>
+      <if test="extInfo != null">
+        ext_info,
+      </if>
+      <if test="merchantCode != null">
+        merchant_code,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="signUpNum != null">
+        sign_up_num,
+      </if>
+      <if test="signInNum != null">
+        sign_in_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="clickCounter != null">
+        #{clickCounter,jdbcType=INTEGER},
+      </if>
+      <if test="pageviewCounter != null">
+        #{pageviewCounter,jdbcType=INTEGER},
+      </if>
+      <if test="stayTime != null">
+        #{stayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="stayTimeCounter != null">
+        #{stayTimeCounter,jdbcType=INTEGER},
+      </if>
+      <if test="registerNum != null">
+        #{registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="recommandNum != null">
+        #{recommandNum,jdbcType=INTEGER},
+      </if>
+      <if test="wxShareCounter != null">
+        #{wxShareCounter,jdbcType=INTEGER},
+      </if>
+      <if test="realAttendNum != null">
+        #{realAttendNum,jdbcType=INTEGER},
+      </if>
+      <if test="campaignType != null">
+        #{campaignType,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignId != null">
+        #{campaignId,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="signUpNum != null">
+        #{signUpNum,jdbcType=INTEGER},
+      </if>
+      <if test="signInNum != null">
+        #{signInNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO">
+    update crm_campaign_statistic
+    <set>
+      <if test="clickCounter != null">
+        click_counter = #{clickCounter,jdbcType=INTEGER},
+      </if>
+      <if test="pageviewCounter != null">
+        pageview_counter = #{pageviewCounter,jdbcType=INTEGER},
+      </if>
+      <if test="stayTime != null">
+        stay_time = #{stayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="stayTimeCounter != null">
+        stay_time_counter = #{stayTimeCounter,jdbcType=INTEGER},
+      </if>
+      <if test="registerNum != null">
+        register_num = #{registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="recommandNum != null">
+        recommand_num = #{recommandNum,jdbcType=INTEGER},
+      </if>
+      <if test="wxShareCounter != null">
+        wx_share_counter = #{wxShareCounter,jdbcType=INTEGER},
+      </if>
+      <if test="realAttendNum != null">
+        real_attend_num = #{realAttendNum,jdbcType=INTEGER},
+      </if>
+      <if test="campaignType != null">
+        campaign_type = #{campaignType,jdbcType=VARCHAR},
+      </if>
+      <if test="campaignId != null">
+        campaign_id = #{campaignId,jdbcType=BIGINT},
+      </if>
+      <if test="extInfo != null">
+        ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="merchantCode != null">
+        merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="signUpNum != null">
+        sign_up_num = #{signUpNum,jdbcType=INTEGER},
+      </if>
+      <if test="signInNum != null">
+        sign_in_num = #{signInNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO">
+    update crm_campaign_statistic
+    set click_counter = #{clickCounter,jdbcType=INTEGER},
+      pageview_counter = #{pageviewCounter,jdbcType=INTEGER},
+      stay_time = #{stayTime,jdbcType=VARCHAR},
+      stay_time_counter = #{stayTimeCounter,jdbcType=INTEGER},
+      register_num = #{registerNum,jdbcType=INTEGER},
+      recommand_num = #{recommandNum,jdbcType=INTEGER},
+      wx_share_counter = #{wxShareCounter,jdbcType=INTEGER},
+      real_attend_num = #{realAttendNum,jdbcType=INTEGER},
+      campaign_type = #{campaignType,jdbcType=VARCHAR},
+      campaign_id = #{campaignId,jdbcType=BIGINT},
+      ext_info = #{extInfo,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      merchant_code = #{merchantCode,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      modifier = #{modifier,jdbcType=OTHER,typeHandler=com.ztesoft.zsmart.nros.base.util.JSONTypeHandler},
+      status = #{status,jdbcType=CHAR},
+      sign_up_num = #{signUpNum,jdbcType=INTEGER},
+      sign_in_num = #{signInNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

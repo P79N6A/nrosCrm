@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="10 seconds">
+    <property name="APP_NAME" value="nroscrm" />
+    <property name="HOST_NAME" value="${HOSTNAME:-UNKNOWN}"/>
+    <include  resource="org/springframework/boot/logging/logback/base.xml"  />
+
+    <!-- 控制台 appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--info级别的日志打印配置-->
+    <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/mnt/logs/crm/nros-crm-info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/mnt/logs/crm/nros-crm-info-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!--info级别的日志打印配置-->
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <File>/mnt/logs/crm/nros-crm-error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/mnt/logs/crm/nros-crm-error-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--debug级别的日志打印配置-->
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <File>/mnt/logs/crm/nros-crm-debug.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/mnt/logs/crm/nros-crm-debug-%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} ${APP_NAME} ${HOST_NAME} %p [%C{0}.%M\(\):%L] - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--控制台打印sql-->
+    <logger name="com.ztesoft.zsmart.nros.crm.dao" level="INFO" />
+
+    <!-- Activiti日志
+    <logger name="org.activiti" level="DEBUG" >
+        <appender-ref ref="DEBUG"/>
+    </logger>
+    <logger name="org.activiti.engine.impl.persistence.entity" level="DEBUG" >
+        <appender-ref ref="DEBUG"/>
+    </logger>
+    -->
+    <logger name="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper" level="DEBUG" >
+        <appender-ref ref="DEBUG"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="INFO" />
+        <appender-ref ref="ERROR" />
+    </root>
+
+</configuration>

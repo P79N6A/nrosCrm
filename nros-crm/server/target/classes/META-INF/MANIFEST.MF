@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: nros-crm-server
+Implementation-Version: 1.0-RELEASE
+Built-By: YUNLONG_CHEN
+Implementation-Vendor-Id: com.ztesoft.zsmart.nros
+Build-Jdk: 1.8.0_144
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/nros-parent/nros-crm/nros-crm-server
+Created-By: Maven Integration for Eclipse
+

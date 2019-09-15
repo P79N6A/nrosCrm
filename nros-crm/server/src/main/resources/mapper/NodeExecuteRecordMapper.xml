@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.NodeExecuteRecordMapper">
+    <resultMap id="BaseResultMap"
+               type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.NodeExecuteRecordDO">
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="node_id" jdbcType="VARCHAR" property="nodeId"/>
+        <result column="node_type" jdbcType="VARCHAR" property="nodeType"/>
+        <result column="node_name" jdbcType="VARCHAR" property="nodeName"/>
+        <result column="marketing_id" jdbcType="BIGINT" property="marketingId"/>
+        <result column="marketing_instance_id" jdbcType="VARCHAR" property="marketingInstanceId"/>
+        <result column="param" jdbcType="VARCHAR" property="param"/>
+        <result column="result" jdbcType="VARCHAR" property="result"/>
+        <result column="target_user_count" jdbcType="BIGINT" property="targetUserCount"/>
+        <result column="ext_info" jdbcType="OTHER" property="extInfo"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode"/>
+        <result column="app_id" jdbcType="VARCHAR" property="appId"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
+        <result column="creator" jdbcType="OTHER" property="creator"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="modifier" jdbcType="OTHER" property="modifier"
+                typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler"/>
+        <result column="status" jdbcType="CHAR" property="status"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, node_id, node_type, node_name, marketing_id, marketing_instance_id, param, result,
+        target_user_count, ext_info, merchant_code, app_id, gmt_create, gmt_modified, creator,
+        modifier, status
+    </sql>
+    <select id="selectInstance"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.client.model.query.MarketingInstanceQuery"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_node_execute_record
+        where status ='A'
+        <if test="marketingId != null">
+            AND marketing_id = #{marketingId,jdbcType=BIGINT}
+        </if>
+        <if test="marketingInstanceId != null">
+            AND marketing_instance_id = #{marketingInstanceId,jdbcType=VARCHAR}
+        </if>
+        <if test="executeNodeType != null">
+            AND node_type = #{executeNodeType,jdbcType=VARCHAR}
+        </if>
+        <if test="beginDate != null">
+            AND gmt_create >= #{beginDate,jdbcType=TIMESTAMP}
+        </if>
+
+        <if test="endDate != null">
+            AND #{endDate,jdbcType=TIMESTAMP} >= gmt_create
+        </if>
+    </select>
+</mapper>

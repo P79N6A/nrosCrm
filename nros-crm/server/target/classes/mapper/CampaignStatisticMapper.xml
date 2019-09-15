@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ztesoft.zsmart.nros.crm.core.server.dao.mapper.CampaignStatisticMapper">
+    <resultMap id="BaseResultMap" type="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="click_counter" jdbcType="INTEGER" property="clickCounter" />
+        <result column="pageview_counter" jdbcType="INTEGER" property="pageviewCounter" />
+        <result column="stay_time" jdbcType="VARCHAR" property="stayTime" />
+        <result column="stay_time_counter" jdbcType="INTEGER" property="stayTimeCounter" />
+        <result column="register_num" jdbcType="INTEGER" property="registerNum" />
+        <result column="recommand_num" jdbcType="INTEGER" property="recommandNum" />
+        <result column="wx_share_counter" jdbcType="INTEGER" property="wxShareCounter" />
+        <result column="real_attend_num" jdbcType="INTEGER" property="realAttendNum" />
+        <result column="campaign_type" jdbcType="VARCHAR" property="campaignType" />
+        <result column="campaign_id" jdbcType="BIGINT" property="campaignId" />
+        <result column="ext_info" jdbcType="OTHER" property="extInfo" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+        <result column="app_id" jdbcType="VARCHAR" property="appId" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+        <result column="creator" jdbcType="OTHER" property="creator" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="modifier" jdbcType="OTHER" property="modifier" typeHandler="com.ztesoft.zsmart.nros.base.util.JSONTypeHandler" />
+        <result column="status" jdbcType="CHAR" property="status" />
+        <result column="sign_up_num" jdbcType="INTEGER" property="signUpNum" />
+        <result column="sign_in_num" jdbcType="INTEGER" property="signInNum" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, click_counter, pageview_counter, stay_time, stay_time_counter, register_num,
+    recommand_num, wx_share_counter, real_attend_num, campaign_type, campaign_id, ext_info,
+    merchant_code, app_id, gmt_create, gmt_modified, creator, modifier, status, sign_up_num,
+    sign_in_num
+  </sql>
+    <select id="selectByCampaignId"
+            parameterType="com.ztesoft.zsmart.nros.crm.core.server.dao.dataobject.generator.CampaignStatisticDO"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_campaign_statistic
+        where
+        campaign_id = #{campaignId,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectCampaignStatisticByCampaignId" parameterType="java.lang.Long"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from crm_campaign_statistic
+        where
+        campaign_id = #{campaignId,jdbcType=BIGINT}
+    </select>
+
+    <update id="updateSignUpStatistic" parameterType="java.lang.Long">
+        update crm_campaign_statistic
+        set sign_up_num = sign_up_num + 1
+        where campaign_id = #{campaignId,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateSignInStatistic" parameterType="java.lang.Long">
+        update crm_campaign_statistic
+        set sign_in_num = sign_in_num + 1
+        where campaign_id = #{campaignId,jdbcType=BIGINT}
+    </update>
+</mapper>
